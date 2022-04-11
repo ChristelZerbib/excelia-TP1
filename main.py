@@ -8,4 +8,4 @@ def index():
     return "Hello World!"
 
 
-run(host='localhost', port=8085)
+run(host="0.0.0.0", port=sys.argv[1], reloader=True)
