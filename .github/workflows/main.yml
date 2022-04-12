@@ -45,6 +45,12 @@ jobs:
         run: |
           pip install -r requirements.txt
           flake8 main.py
+      - name: ECHO REF
+        run: |
+          echo ${{ github.event.pull_request.merged }}
+          echo ${{ github.event.pull_request }}
+          echo ${{ github.event }}
+          echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -52,7 +58,7 @@ jobs:
       - name: Chekout repository
         uses: actions/checkout@v2
       - name: Deploy main to Heroku
-        if: ${{ github.event.pull_request.merged }}
+        if: ${{ github.event.pull_request.merged == true }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
