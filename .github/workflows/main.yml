@@ -47,10 +47,7 @@ jobs:
           flake8 main.py
       - name: ECHO REF
         run: |
-          echo ${{ github.event.pull_request.merged }}
-          echo ${{ github.event.pull_request.created }}
-          echo ${{ github.event_name }}
-          echo ${{ github.refs}}
+          echo ${{ github.ref_name }}
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -58,7 +55,7 @@ jobs:
       - name: Chekout repository
         uses: actions/checkout@v2
       - name: Deploy main to Heroku
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name != 'pull_request' }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
