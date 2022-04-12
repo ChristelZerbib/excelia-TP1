@@ -35,6 +35,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      #Runs tests
+      - name: Tests
+        run: |
+          pip install -r requirements.txt
+          python3 -m pytest --doctest-modules --ignore=main.py --cov
       #Runs flake 8
       - name: Flake 8
         run: |
