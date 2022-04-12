@@ -48,9 +48,9 @@ jobs:
       - name: ECHO REF
         run: |
           echo ${{ github.event.pull_request.merged }}
-          echo ${{ github.event.pull_request }}
-          echo ${{ github.event }}
-          echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+          echo ${{ github.event.pull_request.created }}
+          echo ${{ github.event_name }}
+          echo ${{ github.refs}}
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
       - name: Chekout repository
         uses: actions/checkout@v2
       - name: Deploy main to Heroku
-        if: ${{ github.event.pull_request.created == true }}
+        if: ${{ github.event_name == 'pull_request' }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
