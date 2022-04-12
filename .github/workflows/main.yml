@@ -58,7 +58,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: excelia-indus-dev-tp1
           heroku_email: christelzerbib@gmail.com
-      - name: Deploy main to Heroku
+      - name: Deploy dev to Heroku
         if: ${{ github.ref == 'refs/heads/dev' }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
