@@ -39,7 +39,7 @@ jobs:
       - name: Tests
         run: |
           pip install -r requirements.txt
-          python3 -m pytest --doctest-modules --ignore=main.py --cov
+          python3 -m pytest --doctest-modules --ignore=main.py
       #Runs flake 8
       - name: Flake 8
         run: |
