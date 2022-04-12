@@ -65,7 +65,7 @@ jobs:
       #Runs post deploy tests
       - name: Post
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://excelia-indus-dev-tp1.syfqguyhujiljkhjgom/)
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://excelia-indus-dev-tp1.herokuapp.com/)
           case "$response" in
             200) printf "Received: HTTP $response ==> 200" ;;
             *) exit 1 ;;
