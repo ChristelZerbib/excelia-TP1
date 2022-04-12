@@ -2,7 +2,7 @@
 
 from bottle import route, run
 import sys
-import helpers
+from helpers import hello
 
 
 @route('/')
