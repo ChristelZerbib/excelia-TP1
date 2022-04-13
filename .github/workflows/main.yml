@@ -32,9 +32,15 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8','3.9','3.10']
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: action/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
       #Runs tests
       - name: Tests
         run: |
